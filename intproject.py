@@ -14,24 +14,25 @@ current_day = int(current_date.split('/')[0])
 days_survived = 0
 
 #Days survived this year
-for i in range(0,current_month):
-    if i==1 or i==3 or i==5 or i==7 or i==9 or i==11:
+for i in range(1,current_month):
+    if i==1 or i==3 or i==5 or i==7 or i==8 or i==10 or i==12:
         days_survived+=31
     elif i==2:
         days_survived+=28
     else:
         days_survived+=30
+days_survived+=current_day
 
 #Days in the years(including leap years)
 for j in range(birth_year+1,current_year):
-    if j % 400 == 0  or (i % 4 == 0 and i % 100 != 0):
+    if j % 400 == 0  or (j % 4 == 0 and j % 100 != 0):
         days_survived=days_survived+366
     else:
         days_survived=days_survived+365
 
 #days survived in the birth year
 for k in range(birth_month,13):
-    if k==1 or k==3 or k==5 or k==7 or k==9 or k==11:
+    if k==1 or k==3 or k==5 or k==7 or k==8 or k==10 or k==12:
         days_survived+=31
     elif k==2:
         days_survived+=28
@@ -40,5 +41,4 @@ for k in range(birth_month,13):
 
 #subtracting days before date of birth
 days_survived-=birth_day
-
-print("you have survived",days_survived,"number of days")
+print(days_survived)
