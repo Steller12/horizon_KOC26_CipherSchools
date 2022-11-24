@@ -1,24 +1,44 @@
-#taking input from user
-date_of_birth=int(input("date of birth:"))
-month_of_birth=int(input("month of birth:"))
-year_of_birth=int(input("year of birth:"))
-current_day=int(input("current day:"))
-current_month=int(input("current month:"))
-current_year=int(input("current year:"))
-#years between year or birth and current year
-year=current_year-year_of_birth
-#getting month and day in positive
-if current_month>month_of_birth:
-    month=current_month-month_of_birth
-else:
-    month=month_of_birth-current_month
-if current_day>date_of_birth:
-    day=current_day-date_of_birth
-else:
-    day=date_of_birth-current_day
-    month=month-1
-#logic to add days for leap years one by one
-for i in range(year_of_birth,current_year+1):
-    if i % 400 == 0  or (i % 4 == 0 and i % 100 != 0):
-        day=day+1
-print("your age is",day,"days",month,"months",year,"years")
+#taking input from user in dd/mm/yyyy
+birth_date = input('Enter your birth date in the following format DD/MM/YYYY:')
+current_date = input('Enter your current date in the following format DD/MM/YYYY:')
+birth_day = int(birth_date.split('/')[0])
+birth_month = int(birth_date.split('/')[1])
+birth_year = int(birth_date.split('/')[2])
+
+#splitting the input to use in logical operations
+current_year = int(current_date.split('/')[2])
+current_month = int(current_date.split('/')[1])
+current_day = int(current_date.split('/')[0])
+
+#empty variable to add all the days survived
+days_survived = 0
+
+#Days survived this year
+for i in range(0,current_month):
+    if i==1 or i==3 or i==5 or i==7 or i==9 or i==11:
+        days_survived+=31
+    elif i==2:
+        days_survived+=28
+    else:
+        days_survived+=30
+
+#Days in the years(including leap years)
+for j in range(birth_year+1,current_year):
+    if j % 400 == 0  or (i % 4 == 0 and i % 100 != 0):
+        days_survived=days_survived+366
+    else:
+        days_survived=days_survived+365
+
+#days survived in the birth year
+for k in range(birth_month,13):
+    if k==1 or k==3 or k==5 or k==7 or k==9 or k==11:
+        days_survived+=31
+    elif k==2:
+        days_survived+=28
+    else:
+        days_survived+=30
+
+#subtracting days before date of birth
+days_survived-=birth_day
+
+print("you have survived",days_survived,"number of days")
