@@ -41,4 +41,4 @@ for k in range(birth_month,13):
 
 #subtracting days before date of birth
 days_survived-=birth_day
-print(days_survived)
+print("you have survived",days_survived,"number of days")
